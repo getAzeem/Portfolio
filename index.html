@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdul Azeem - DevOps Engineer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00d9ff;
+            --primary-dark: #0099cc;
+            --secondary: #ff6b35;
+            --bg: #0a0e27;
+            --bg-light: #1a1f3a;
+            --text: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --border: #2d3a5c;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(255, 107, 53, 0.05) 100%);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 4rem 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0;
+            background: linear-gradient(180deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);
+        }
+
+        .hero-content {
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-text h1 span {
+            color: var(--primary);
+        }
+
+        .hero-text .current-role {
+            background: rgba(0, 217, 255, 0.1);
+            border-left: 3px solid var(--primary);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        .current-role a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+        }
+
+        .current-role a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            max-width: 500px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--bg);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 217, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-item a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary);
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 2.5rem;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 2px;
+        }
+
+        /* Summary Section */
+        .summary {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            background: rgba(0, 217, 255, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 217, 255, 0.1);
+        }
+
+        .project-header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, rgba(255, 107, 53, 0.05) 100%);
+        }
+
+        .project-header h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-badge {
+            background: rgba(0, 217, 255, 0.15);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .project-body {
+            padding: 2rem;
+        }
+
+        .project-body p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .project-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Certifications & Education */
+        .cert-edu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .cert-item, .edu-item {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .cert-item:hover, .edu-item:hover {
+            transform: translateX(8px);
+            border-left-color: var(--secondary);
+        }
+
+        .cert-item h4, .edu-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .cert-item p, .edu-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .edu-date {
+            color: var(--primary);
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-light);
+            border-top: 1px solid var(--border);
+            padding: 2rem 0;
+            margin-top: 6rem;
+        }
+
+        footer p {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: var(--bg-light);
+                flex-direction: column;
+                padding: 2rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+
+            .hero-content {
+                gap: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">AA</div>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text fade-in">
+                    <h1>Abdul <span>Azeem</span></h1>
+                    <div class="current-role">
+                        <strong>💼 Currently Working as DevOps Intern</strong><br>
+                        at <a href="https://www.trinix.org.in/" target="_blank">Trinix Private Limited</a>
+                    </div>
+                    <p>DevOps practitioner with hands-on experience in infrastructure automation, CI/CD pipelines, and Java backend development. Skilled in Docker, Jenkins, Ansible, and Terraform with proven ability to streamline deployments on AWS and Azure.</p>
+                    <div class="cta-buttons">
+                        <a href="#projects" class="btn btn-primary">View My Work</a>
+                        <a href="mailto:coffeewithazim@gmail.com" class="btn btn-secondary">Get In Touch</a>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-item">📞 <a href="tel:+917800626083">+91-7800626083</a></div>
+                        <div class="contact-item">✉️ <a href="mailto:coffeewithazim@gmail.com">coffeewithazim@gmail.com</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About</h2>
+            <div class="summary">
+                <p>DevOps practitioner with hands-on experience in infrastructure automation, CI/CD pipelines, and Java backend development using Spring Boot. Skilled in Docker, Jenkins, Ansible, and Terraform, with proven ability to streamline deployments using infrastructure as code on AWS and Azure. Focused on building scalable, maintainable systems that enhance development efficiency and operational reliability.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category fade-in delay-1">
+                    <h3>DevOps & Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Azure DevOps</span>
+                        <span class="skill-tag">Terraform</span>
+                        <span class="skill-tag">Azure</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Jenkins</span>
+                        <span class="skill-tag">Ansible</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Vagrant</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in delay-2">
+                    <h3>Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Spring Boot</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in delay-3">
+                    <h3>Databases</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">MySQL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card fade-in delay-1">
+                    <div class="project-header">
+                        <h3>Load-Balanced Auto-Scaling Architecture</h3>
+                        <div class="project-tech">
+                            <span class="tech-badge">Terraform</span>
+                            <span class="tech-badge">AWS</span>
+                            <span class="tech-badge">IaC</span>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <p>Developed a modular Terraform project to provision a scalable AWS infrastructure with ALB, Auto Scaling Group, EC2 instances, and secure networking across multiple availability zones.</p>
+                        <p>Automated the deployment of cloud resources with environment-specific configurations, health checks, and dynamic scaling policies to optimize performance and cost-efficiency.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/GitAzeem/terraform-alb-asg.git" target="_blank">→ View Repository</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in delay-2">
+                    <div class="project-header">
+                        <h3>InfraSecure-CostOps</h3>
+                        <div class="project-tech">
+                            <span class="tech-badge">CI/CD</span>
+                            <span class="tech-badge">Security</span>
+                            <span class="tech-badge">TFSEC</span>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <p>Integrated TFSEC and TFLint security scans into the CI pipeline, significantly improving code quality and security posture through automated analysis.</p>
+                        <p>Added Infracost to provide early cost visibility of infrastructure changes, enabling informed decisions before merging code.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/GitAzeem/InfraSecure-CostOps.git" target="_blank">→ View Repository</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in delay-3">
+                    <div class="project-header">
+                        <h3>CI-Pipeline-for-Spring3Hibernate</h3>
+                        <div class="project-tech">
+                            <span class="tech-badge">Azure DevOps</span>
+                            <span class="tech-badge">Java</span>
+                            <span class="tech-badge">Maven</span>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <p>Implemented a robust CI pipeline using Azure DevOps with a self-hosted AWS agent to automate the build, packaging, and artifact publishing of a Java Spring3Hibernate web application.</p>
+                        <p>Designed pipeline for scalability and extensibility with future-ready features such as database integration, automated testing, and deployment stages.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/getAzeem/CI-Pipeline-for-Spring3Hibernate.git" target="_blank">→ View Repository</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-header">
+                        <h3>Automated CI/CD Pipeline for Azure Static Content</h3>
+                        <div class="project-tech">
+                            <span class="tech-badge">Azure DevOps</span>
+                            <span class="tech-badge">Terraform</span>
+                            <span class="tech-badge">YAML</span>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <p>Architected and implemented a full CI/CD pipeline in Azure DevOps using YAML to fully automate the Terraform lifecycle (init, plan, apply), enabling seamless infrastructure deployment from code commit to production.</p>
+                        <p>Integrated Azure service principal authentication and configured remote backend state management directly within the pipeline tasks.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/getAzeem/Azure-static-hosting.git" target="_blank">→ View Repository</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-header">
+                        <h3>Azure Sentinel Scale</h3>
+                        <div class="project-tech">
+                            <span class="tech-badge">Terraform</span>
+                            <span class="tech-badge">Azure</span>
+                            <span class="tech-badge">Security</span>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <p>Developed an automated Terraform-based solution to deploy a secure, cost-optimized Azure VM Scale Set with auto-scaling, security scanning (TFSec, TFLint), and real-time cost estimation (Infracost).</p>
+                        <p>Implemented validation and compliance automation scripts to ensure infrastructure code quality, security posture, and budget monitoring in CI pipelines.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/getAzeem/azure-sentinel-scale.git" target="_blank">→ View Repository</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-header">
+                        <h3>VM-Project-Terraform</h3>
+                        <div class="project-tech">
+                            <span class="tech-badge">Terraform</span>
+                            <span class="tech-badge">Azure</span>
+                            <span class="tech-badge">IaC</span>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <p>Developed Terraform code that automates the deployment of Azure infrastructure components, including virtual machines, networking, and storage, with integrated remote state management.</p>
+                        <p>This automation simplifies the process of provisioning cloud resources, enhances infrastructure scalability, and ensures configuration consistency across environments.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/GitAzeem/VM-project-terraform" target="_blank">→ View Repository</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications & Education</h2>
+            <div class="cert-edu-grid">
+                <div class="cert-item fade-in delay-1">
+                    <h4>Solutions Architecture Job Simulation</h4>
+                    <p>AWS • Forage</p>
+                </div>
+
+                <div class="cert-item fade-in delay-2">
+                    <h4>Operating Systems & Power User</h4>
+                    <p>Google Career Certificates</p>
+                </div>
+
+                <div class="cert-item fade-in delay-3">
+                    <h4>Software Engineering Job Simulation</h4>
+                    <p>Electronic Arts (EA) • Forage</p>
+                </div>
+
+                <div class="cert-item fade-in">
+                    <h4>Fundamentals of Ansible</h4>
+                    <p>Red Hat</p>
+                </div>
+
+                <div class="edu-item fade-in delay-1">
+                    <h4>Bachelor of Technology (B.Tech)</h4>
+                    <p>Computer Science and Engineering</p>
+                    <p>Bennett University, Greater Noida</p>
+                    <div class="edu-date">Aug 2023 - May 2027</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <div style="text-align: center; background: var(--bg-light); padding: 3rem; border-radius: 8px; border: 1px solid var(--border);">
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Have an exciting opportunity or project in mind? Feel free to reach out!</p>
+                <div class="cta-buttons" style="justify-content: center;">
+                    <a href="mailto:coffeewithazim@gmail.com" class="btn btn-primary">Send Email</a>
+                    <a href="https://linkedin.com" target="_blank" class="btn btn-secondary">LinkedIn</a>
+                    <a href="https://github.com/GitAzeem" target="_blank" class="btn btn-secondary">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Abdul Azeem. All rights reserved. | DevOps Engineer | Built with passion</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
